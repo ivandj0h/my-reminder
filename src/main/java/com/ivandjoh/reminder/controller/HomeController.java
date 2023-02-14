@@ -5,6 +5,8 @@ import com.ivandjoh.reminder.service.HomeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+
 @RestController
 @RequestMapping("/")
 public class HomeController {
@@ -23,5 +25,10 @@ public class HomeController {
     @PostMapping("reminder")
     public ResponseEntity<?> setReminder(@RequestBody HomeRequest time) {
         return homeService.setReminder(time);
+    }
+
+    @GetMapping("time")
+    public ResponseEntity<?> getCalcTime() throws ParseException {
+        return homeService.getCalcTime();
     }
 }

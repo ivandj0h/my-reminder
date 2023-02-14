@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Service
 public class HomeServiceImpl implements HomeService {
 
@@ -30,5 +34,24 @@ public class HomeServiceImpl implements HomeService {
         return ResponseEntity
                 .status(200)
                 .body(response);
+    }
+
+    @Override
+    public ResponseEntity<?> getCalcTime() throws ParseException {
+
+        String time1 = "16:00";
+        String time2 = "20:30";
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        Date d1 = format.parse(time1);
+        Date d2 = format.parse(time2);
+
+        long diff = d2.getTime() - d1.getTime();
+        int min = (int) (diff / (1000*60));
+        log.info("Time difference : {} minutes ", min);
+
+        return ResponseEntity
+                .status(200)
+                .body(min);
     }
 }
