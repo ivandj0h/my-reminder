@@ -2,7 +2,6 @@ package com.ivandjoh.reminder.controller;
 
 import com.ivandjoh.reminder.http.HomeRequest;
 import com.ivandjoh.reminder.service.HomeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/")
 public class HomeController {
 
-    @Autowired
-    private HomeService homeService;
+    private final HomeService homeService;
+
+    public HomeController(HomeService homeService) {
+        this.homeService = homeService;
+    }
 
     @GetMapping("")
     public String home() {
