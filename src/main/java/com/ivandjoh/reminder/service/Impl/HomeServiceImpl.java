@@ -39,7 +39,7 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public ResponseEntity<?> getCalcTime() throws ParseException {
-
+      
         String time1 = "12:45";
         String time2 = "14:00";
 
