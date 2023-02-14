@@ -1,15 +1,25 @@
 package com.ivandjoh.reminder.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ivandjoh.reminder.http.HomeRequest;
+import com.ivandjoh.reminder.service.HomeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
 public class HomeController {
 
+    @Autowired
+    private HomeService homeService;
+
     @GetMapping("")
     public String home() {
         return "Hello World!";
+    }
+
+    @PostMapping("reminder")
+    public ResponseEntity<?> setReminder(@RequestBody HomeRequest time) {
+        return homeService.setReminder(time);
     }
 }
