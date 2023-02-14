@@ -3,6 +3,7 @@ package com.ivandjoh.reminder.service.Impl;
 import com.ivandjoh.reminder.http.HomeRequest;
 import com.ivandjoh.reminder.http.HomeResponse;
 import com.ivandjoh.reminder.service.HomeService;
+import com.ivandjoh.reminder.utils.QuartzScheduler;
 import com.ivandjoh.reminder.utils.ReminderHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,9 +39,9 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public ResponseEntity<?> getCalcTime() throws ParseException {
-
-        String time1 = "16:00";
-        String time2 = "20:30";
+      
+        String time1 = "12:45";
+        String time2 = "14:00";
 
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         Date d1 = format.parse(time1);
@@ -53,5 +54,12 @@ public class HomeServiceImpl implements HomeService {
         return ResponseEntity
                 .status(200)
                 .body(min);
+    }
+
+    @Override
+    public ResponseEntity<?> quartz() {
+
+        QuartzScheduler.executeTask(2);
+        return null;
     }
 }

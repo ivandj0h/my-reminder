@@ -31,4 +31,9 @@ public class HomeController {
     public ResponseEntity<?> getCalcTime() throws ParseException {
         return homeService.getCalcTime();
     }
+
+    @GetMapping("quartz")
+    public ResponseEntity<?> quartz() {
+        return homeService.quartz();
+    }
 }

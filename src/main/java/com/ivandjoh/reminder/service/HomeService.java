@@ -9,4 +9,6 @@ public interface HomeService {
     ResponseEntity<?> setReminder(HomeRequest time);
 
     ResponseEntity<?> getCalcTime() throws ParseException;
+
+    ResponseEntity<?> quartz();
 }
