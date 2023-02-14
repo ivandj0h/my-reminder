@@ -3,6 +3,7 @@ package com.ivandjoh.reminder.service.Impl;
 import com.ivandjoh.reminder.http.HomeRequest;
 import com.ivandjoh.reminder.http.HomeResponse;
 import com.ivandjoh.reminder.service.HomeService;
+import com.ivandjoh.reminder.utils.ReminderHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,11 @@ public class HomeServiceImpl implements HomeService {
         response.setTime(time.getTime());
         response.setMessage("Reminder has been set for " + time.getTime());
 
-        log.info("Reminder set for " + time);
+        String getTime = response.getTime();
+
+        String[] strTime = getTime.split(":", 2);
+
+        ReminderHelper.executeTask(Integer.parseInt(strTime[0]));
 
         return ResponseEntity
                 .status(200)
